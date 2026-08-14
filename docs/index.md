@@ -21,75 +21,275 @@ to get the example projects running on your machine.
 
 ## Phase 4. Technical Modification
 
-Describe your small technical modification to the example project.
+I copied the working example files (`app_case.py`, `ml_07_case.ipynb`, and
+the optional `ml_07_text_and_image_case.ipynb`) and created three modified
+versions with several real, coordinated changes rather than a single small
+edit: `app_abdel.py`, `ml_07_abdel.ipynb`, and
+`ml_07_text_and_image_abdel.ipynb`.
 
-Include:
+### What I changed
 
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
+**app_abdel.py**
 
-Compared with the example project,
-explain what is different and why the change matters.
+- Engineered a new feature, `study_efficiency`, calculated as
+  `hours_studied / sleep_hours`, and added it to the model's feature set.
+- Trained and compared **two** models instead of one: `LinearRegression`
+  and `Ridge`, logging both sets of metrics side by side.
+- Predicted a new, different custom case (a lower-effort student profile)
+  instead of the original example's input values.
+- Replaced the plain scatter plot with a `seaborn.regplot`, which adds a
+  fitted trend line on top of the points.
+- Changed the coefficient bar chart to show both models' coefficients
+  grouped side by side, using a new `viridis` color palette.
+- Added a brand-new chart that did not exist in the original example: a
+  correlation heatmap of all features and the target.
 
-Was it easy, or surprisingly challenging and why do you think so?
+**ml_07_abdel.ipynb**
+
+- Added a 4th baseline case (a second Gentoo-like example) to the baseline
+  prediction check.
+- Swept `body_mass_g` instead of `bill_length_mm` in the feature
+  sensitivity section, and changed the chart style from a flat scatter
+  strip to a connected line-and-marker chart colored by predicted species.
+- Used a different feature pair, `bill_depth_mm` vs `body_mass_g`, for the
+  two-feature prediction grid (instead of `bill_length_mm` vs
+  `flipper_length_mm`), with a new colormap.
+- Added two new edge cases: an unrealistically large body mass, and a bill
+  depth of 0.
+
+**ml_07_text_and_image_abdel.ipynb** (optional)
+
+- Replaced the original sports/cooking/space text corpus with a new
+  technology/music/travel corpus.
+- Compared **two** text models instead of one: `MultinomialNB` and
+  `LogisticRegression`, with a new bar chart comparing their accuracy.
+- Compared **two** image models instead of one: `LogisticRegression` and
+  `RandomForestClassifier`, changed the image train/test split from 80/20
+  to 70/30, and added a bar chart comparing their accuracy.
+- Added the missing function calls (`run_text_pipeline()`,
+  `run_image_pipeline()`, `summarize()`) at the end of the notebook. The
+  original example only *defined* these functions without ever calling
+  them, so it produced no output; my version actually runs the full
+  pipeline.
+
+### Why I chose these changes
+
+I wanted the modification to demonstrate real, functioning changes to the
+model comparison, feature engineering, and visualization layers of the
+project, not just a cosmetic edit, since that better reflects how a data
+professional would actually iterate on a working analytics project: adding
+a feature, trying an alternative model, and adding a chart that reveals
+something the original charts did not show.
+
+### How I verified it worked
+
+I ran `uv run python -m mlstudio.app_abdel` in my VS Code terminal and
+confirmed the script completed with `Executed successfully!` in the log,
+with three chart windows generated correctly. I then opened
+`ml_07_abdel.ipynb`, selected my project `.venv` kernel, and used Run All
+to confirm every cell executed without error and produced the expected
+sweep table, grid heatmap, and edge case results. I did the same for
+`ml_07_text_and_image_abdel.ipynb`.
+
+### What result confirmed the change
+
+For `app_abdel.py`: the new `study_efficiency` feature had a correlation
+of 0.985 with the target score, `LinearRegression` achieved a mean
+absolute error of 0.71 versus 0.85 for `Ridge`, and the new custom
+prediction case returned a predicted score of 63.5. All three charts
+(regplot with trend line, grouped coefficient bars, and the new
+correlation heatmap) rendered correctly.
+
+For `ml_07_abdel.ipynb`: the `body_mass_g` sweep produced a clear
+species boundary similar to the original `bill_length_mm` sweep,
+confirming the sweep logic still worked correctly with a different
+feature. Interestingly, the new `bill_depth_mm` vs `body_mass_g`
+prediction grid returned a uniform Chinstrap prediction across the entire
+grid for the Adelie baseline, revealing that this particular feature pair
+has far less influence on the model's decision than the original
+`bill_length_mm` vs `flipper_length_mm` pair, a genuinely useful and
+somewhat unexpected finding about which features the deployed model
+actually relies on.
+
+### Was it easy, moderate, or challenging
+
+I would rate this as **moderate**. Each individual change (adding a
+feature, swapping a chart type, comparing two models) was not difficult
+on its own, but making several coordinated changes across three files
+while keeping every part of each notebook and script consistent and still
+running correctly required more careful attention than a single small
+edit would have. The main challenge was making sure the new engineered
+feature, `study_efficiency`, was computed identically everywhere it was
+used (training data, clean view, and the new prediction case), since a
+mismatch there would have caused an error or an inconsistent prediction.
 
 ## Phase 5. Custom Project
 
-Describe your custom investigation of the deployed model.
+For my custom project, I applied the skills from the Module 7 example to
+a new domain: **injection molding process engineering in manufacturing**.
 
-Be specific about what changed from the example project.
+### Basis and Model
 
-### Basis and API
+The Module 7 example investigated an already-deployed external penguin
+species classifier by calling a live prediction API. For my custom
+project, I chose to train and investigate **my own models** on a new,
+richer dataset rather than calling an external API, since no
+manufacturing-specific deployed API was available to me. To keep the same
+investigative spirit as the example, I built a local
+`predict_defect_probability()` function that behaves exactly like calling
+a deployed API: it accepts a payload of process settings and returns a
+probability, and I used it the same way the example used `predict()`
+against the live penguin endpoint, sweeping features, building a decision
+grid, and testing edge cases against it.
 
-Describe the deployed model and API you started with.
+I trained:
 
-Include:
+- Two classifiers, `RandomForestClassifier` and
+  `GradientBoostingClassifier`, to predict `defect` (whether a batch is
+  likely defective) from 13 raw process parameters plus 2 engineered
+  features.
+- One regressor, `RandomForestRegressor`, to predict the continuous
+  target `part_weight_g`.
 
-- The example model and what it predicts
-- The API endpoint and what inputs it expects
-- Why you chose to keep or change the endpoint or model
+Dataset: `data/raw/manufacturing_quality_abdel.csv`, a synthetic but
+realistically engineered dataset of 3,000 injection-molding production
+batches across 19 columns, generated with real process-engineering
+relationships (for example, defect risk rises when melt temperature
+deviates from a 235°C setpoint in either direction, when cooling time is
+too short, and when material moisture is high, and falls with operator
+experience), with random noise layered on top so it behaves like real
+sensor data rather than a perfectly deterministic formula. Full column
+documentation is in `data/raw/README.md`.
 
 ### Investigation Approach
 
-Describe how you investigated the model's behavior.
+I varied process parameters the same way the Module 7 example varied
+penguin measurements:
 
-Include:
+- **Single-feature sweep:** varied `melt_temperature_c` across its full
+  range (205°C to 265°C) while holding all other process settings fixed,
+  to see how defect probability changes as melt temperature moves away
+  from the 235°C setpoint.
+- **Two-feature decision grid:** varied `cooling_time_s` and
+  `melt_temperature_c` together across a 12x12 grid, to visualize the
+  combined decision surface rather than looking at one feature at a time.
+- **Edge cases:** tested six unusual or extreme process settings
+  (extremely hot melt, extremely cold melt, near-zero cooling time, very
+  high material moisture, a brand-new operator with 0 years of
+  experience, and a "worst case" combining several risk factors at once)
+  to see how the model responds outside normal operating conditions.
 
-- Which features you varied and why
-- How you structured your tests (single feature, grid, edge cases)
-- What you were trying to learn about the model
+I was trying to learn which process parameters the classifier relies on
+most heavily, where the defect risk boundary sits for each parameter, and
+whether the model behaves sensibly (matching real process-engineering
+intuition) or produces surprising results outside the training data's
+typical range.
 
 ### Findings: Feature Sensitivity
 
-Describe what you observed when varying individual features.
+The `melt_temperature_c` sweep produced a clear **U-shaped** defect
+probability curve: probability was lowest (around 0.16-0.17) near the
+235°C setpoint, and rose steadily at both extremes, reaching about 0.55 at
+205°C and about 0.55 again at 265°C. This matches real injection molding
+physics, since both underheating and overheating the melt cause different
+but related defects (short shots and burn marks, respectively), so it was
+reassuring to see the model had actually learned this relationship from
+the data rather than a simpler, incorrect one-directional trend.
 
-Include:
+The feature importance chart showed that `melt_temp_deviation` and
+`cooling_adequacy_ratio`, my two engineered features, ranked among the
+most important features for the `RandomForestClassifier`, which validates
+the process-engineering judgment behind creating them in the first place,
+rather than relying on the raw sensor readings (`melt_temperature_c` and
+`cooling_time_s` alone) without that transformation.
 
-- Which features had the most influence on predictions
-- Where the decision boundary appeared to shift
-- Any surprising or counterintuitive results
+The two-feature decision grid (`cooling_time_s` vs `melt_temperature_c`)
+showed the highest defect risk concentrated in the corner where cooling
+time is short **and** melt temperature is far from the setpoint at the
+same time, a compounding risk that a single-feature sweep alone would not
+have revealed.
 
 ### Findings: Edge Cases
 
-Describe what happened with unusual or invalid inputs.
+| Edge case | Defect probability |
+|---|---|
+| Extremely hot melt (265°C) | 0.55 |
+| Extremely cold melt (200°C) | 0.54 |
+| Near-zero cooling time (4s) | 0.36 |
+| Very high material moisture (0.35%) | 0.53 |
+| Brand-new operator (0 years experience) | 0.23 |
+| Everything at worst case combined | 0.71 |
 
-Include:
+All edge cases returned a clean probability between 0 and 1 rather than
+an error, showing the model is robust to unusual single-feature inputs.
+The "everything at worst case" scenario, which combined five risk factors
+at once, produced the highest probability (0.71) of any test, higher than
+any single extreme feature alone, which confirms the model correctly
+recognizes that combined risk factors compound rather than simply taking
+the maximum of the individual risks.
 
-- What edge cases you tested
-- How the API responded (prediction, error, or unexpected behavior)
-- What this tells you about the model's robustness
+One mildly surprising result: near-zero cooling time alone only produced
+a 0.36 probability, lower than either temperature extreme alone. This
+suggests that, in the trained model, melt temperature deviation and
+material moisture individually carry more predictive weight toward
+defects than cooling time alone does, at least for this baseline case,
+which is a useful, concrete finding for a quality engineer since it
+suggests process temperature control may deserve more attention than
+cooling time when troubleshooting defects on this line.
+
+### Model Performance Summary
+
+- `RandomForestClassifier`: Accuracy 0.712, Precision 0.664, Recall
+  0.303, F1 0.416, ROC-AUC 0.724
+- `GradientBoostingClassifier`: Accuracy 0.712, Precision 0.610, Recall
+  0.413, F1 0.493, ROC-AUC 0.721
+- `RandomForestRegressor` (part weight): Mean absolute error 0.287 grams,
+  R-squared 0.669
+
+`RandomForestClassifier` had the better precision and ROC-AUC, while
+`GradientBoostingClassifier` had noticeably better recall. In a quality
+control context, recall usually matters more than precision, since
+missing a real defect (a false negative) is typically more costly than a
+false alarm that sends a good part for an unnecessary double-check. This
+is a real tradeoff a quality engineer would need to decide on deliberately
+rather than picking a model on accuracy alone, and it is a good example of
+how the "best" model depends on the cost of different kinds of mistakes,
+not just a single overall metric.
 
 ### Summary
 
-Summarize your custom investigation.
+This project applied the Module 7 investigation pattern (train, evaluate,
+predict new cases, then systematically probe the model with sweeps,
+grids, and edge cases) to a new manufacturing process engineering problem,
+using a model I trained myself rather than an external deployed API. The
+model appears confident and its behavior matches real process-engineering
+intuition for melt temperature (a clear U-shaped risk curve centered on
+the correct setpoint) and for combined risk factors (worst-case scenario
+producing the highest risk of any test). It appears more fragile, or at
+least surprising, around cooling time in isolation, and its overall recall
+(0.30 for RandomForest) is low enough that, in a real deployment, I would
+not trust this model alone to catch every defective batch without
+additional inspection.
 
-Include:
+If I were changing the "API contract" for this system, I would add
+range-validation on the input payload (rejecting physically impossible
+values like negative pressures) and I would report a calibrated confidence
+interval alongside each probability rather than a bare point estimate, so
+downstream users understand how much to trust a given prediction.
 
-- What you learned about the model's behavior
-- Where it appears confident and where it seems fragile
-- What you would change about the API contract or model
-- What kinds of real problems this approach could apply to
+This general approach, sweeping one parameter, building a two-parameter
+decision grid, and testing edge cases against a trained model, could apply
+to many other real problems beyond injection molding: predicting equipment
+failure from sensor readings in predictive maintenance, predicting loan
+default risk from applicant financial data, or predicting patient
+readmission risk from clinical measurements. In each case, the same
+technique, probing a model systematically rather than trusting a single
+accuracy number, helps reveal where a model is reliable and where it is
+not, before it is trusted with real decisions.
 
-Display at least one chart or screenshot showing your findings.
+Charts referenced in this section are included in the project README:
+see [Findings and Visuals](../README.md#findings-and-visuals) for the full
+set of Phase 4 and Phase 5 charts, including the correlation heatmap,
+feature importance chart, confusion matrix, ROC curve comparison, defect
+rate by machine and shift, and the melt temperature feature-sensitivity
+chart described above.

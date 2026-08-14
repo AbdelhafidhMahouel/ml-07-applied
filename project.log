@@ -964,3 +964,341 @@ dtype: int64
 2026-08-13 20:56:10 | INFO | M07 |   - What did flattening images throw away, and where would that bite you?
 2026-08-13 20:56:10 | INFO | M07 |   - For each, what representation would you reach for next, and why?
 2026-08-13 20:56:10 | INFO | M07 | ========================
+2026-08-13 21:18:39 | INFO | MFG | === RUN START ===
+2026-08-13 21:18:39 | INFO | MFG | project=MFG
+2026-08-13 21:18:39 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:18:39 | INFO | MFG | python=3.14.2
+2026-08-13 21:18:39 | INFO | MFG | os=Windows 11
+2026-08-13 21:18:39 | INFO | MFG | shell=powershell
+2026-08-13 21:18:39 | INFO | MFG | cwd=.
+2026-08-13 21:18:39 | INFO | MFG | github_actions=False
+2026-08-13 21:18:39 | INFO | MFG | === RUN START ===
+2026-08-13 21:18:39 | INFO | MFG | project=MFG
+2026-08-13 21:18:39 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:18:39 | INFO | MFG | python=3.14.2
+2026-08-13 21:18:39 | INFO | MFG | os=Windows 11
+2026-08-13 21:18:39 | INFO | MFG | shell=powershell
+2026-08-13 21:18:39 | INFO | MFG | cwd=.
+2026-08-13 21:18:39 | INFO | MFG | github_actions=False
+2026-08-13 21:18:39 | INFO | MFG | ========================
+2026-08-13 21:18:39 | INFO | MFG | START main() - Phase 5 custom manufacturing project
+2026-08-13 21:18:39 | INFO | MFG | ========================
+2026-08-13 21:18:39 | INFO | MFG | Load dataset..............
+2026-08-13 21:18:39 | INFO | MFG | Loading dataset: manufacturing_quality_abdel
+2026-08-13 21:18:39 | INFO | MFG | Loaded: 3000 rows, 19 columns
+2026-08-13 21:18:39 | DEBUG | MFG | 
+  batch_id machine_id    shift  operator_experience_years  melt_temperature_c  mold_temperature_c  injection_pressure_bar  \
+0  B100000         M4    Night                        2.9              231.18               56.60                  120.46   
+1  B100001         M2  Evening                        8.9              223.54               63.93                  119.15   
+2  B100002         M5      Day                        4.6              255.47               61.06                  111.62   
+3  B100003         M3  Evening                        0.4              234.76               52.98                  131.47   
+4  B100004         M1      Day                        5.9              248.97               65.32                  132.42   
+
+   injection_speed_mm_s  screw_speed_rpm  back_pressure_bar  hold_pressure_bar  hold_time_s  cooling_time_s  cycle_time_s  \
+0                 67.59            104.3               9.94              61.43         5.43           20.75         32.42   
+1                 87.90             99.0              11.74              66.41         7.11           13.54         25.52   
+2                 40.01            129.4              16.25              80.23         5.56           13.25         25.03   
+3                 70.96            114.7              17.21              96.88         6.89           18.05         30.28   
+4                 74.50            142.7              15.29              67.06         5.05           18.14         27.47   
+
+   material_moisture_pct  ambient_humidity_pct  part_weight_g  defect defect_type  
+0                 0.0100                 55.56         49.515       0        none  
+1                 0.0060                 57.04         49.230       1   burn_mark  
+2                 0.0050                 38.56         50.884       0        none  
+3                 0.0401                 48.67         50.831       0        none  
+4                 0.1496                 48.37         50.489       0        none  
+2026-08-13 21:18:39 | INFO | MFG | Inspect dataset...........
+2026-08-13 21:18:39 | INFO | MFG | Column names
+2026-08-13 21:18:39 | DEBUG | MFG | ['batch_id', 'machine_id', 'shift', 'operator_experience_years', 'melt_temperature_c', 'mold_temperature_c', 'injection_pressure_bar', 'injection_speed_mm_s', 'screw_speed_rpm', 'back_pressure_bar', 'hold_pressure_bar', 'hold_time_s', 'cooling_time_s', 'cycle_time_s', 'material_moisture_pct', 'ambient_humidity_pct', 'part_weight_g', 'defect', 'defect_type']
+2026-08-13 21:18:39 | INFO | MFG | DataFrame info
+2026-08-13 21:18:39 | INFO | MFG | Dataset shape: 3000 rows, 19 columns
+2026-08-13 21:18:39 | INFO | MFG | Defect rate: 33.8%
+2026-08-13 21:18:39 | INFO | MFG | Machines represented: ['M1', 'M2', 'M3', 'M4', 'M5']
+2026-08-13 21:18:39 | INFO | MFG | Shifts represented: ['Day', 'Evening', 'Night']
+2026-08-13 21:18:39 | INFO | MFG | Check data quality........
+2026-08-13 21:18:39 | INFO | MFG | Missing values by column
+2026-08-13 21:18:39 | DEBUG | MFG | 
+batch_id                     0
+machine_id                   0
+shift                        0
+operator_experience_years    0
+melt_temperature_c           0
+mold_temperature_c           0
+injection_pressure_bar       0
+injection_speed_mm_s         0
+screw_speed_rpm              0
+back_pressure_bar            0
+hold_pressure_bar            0
+hold_time_s                  0
+cooling_time_s               0
+cycle_time_s                 0
+material_moisture_pct        0
+ambient_humidity_pct         0
+part_weight_g                0
+defect                       0
+defect_type                  0
+dtype: int64
+2026-08-13 21:18:39 | INFO | MFG | Duplicate row count: 0
+2026-08-13 21:18:39 | INFO | MFG | Duplicate batch_id count: 0
+2026-08-13 21:18:39 | INFO | MFG | Engineer features..........
+2026-08-13 21:18:39 | INFO | MFG | Engineered feature: melt_temp_deviation = |melt_temperature_c - 235|
+2026-08-13 21:18:39 | INFO | MFG | Engineered feature: cooling_adequacy_ratio = cooling_time_s / 14.0 seconds
+2026-08-13 21:18:39 | INFO | MFG | Create clean modeling view..........
+2026-08-13 21:18:39 | INFO | MFG | Creating clean modeling view
+2026-08-13 21:18:39 | INFO | MFG | Clean view: 3000 rows, 17 columns
+2026-08-13 21:18:39 | INFO | MFG | Train and compare classifiers (defect prediction)....
+2026-08-13 21:18:39 | INFO | MFG | Training classifiers to predict: defect (1 = likely defective)
+2026-08-13 21:18:40 | INFO | MFG | RandomForestClassifier results:
+2026-08-13 21:18:40 | INFO | MFG |   Accuracy:  0.712
+2026-08-13 21:18:40 | INFO | MFG |   Precision: 0.664
+2026-08-13 21:18:40 | INFO | MFG |   Recall:    0.303
+2026-08-13 21:18:40 | INFO | MFG |   F1 score:  0.416
+2026-08-13 21:18:40 | INFO | MFG |   ROC-AUC:   0.724
+2026-08-13 21:18:41 | INFO | MFG | GradientBoostingClassifier results:
+2026-08-13 21:18:41 | INFO | MFG |   Accuracy:  0.712
+2026-08-13 21:18:41 | INFO | MFG |   Precision: 0.610
+2026-08-13 21:18:41 | INFO | MFG |   Recall:    0.413
+2026-08-13 21:18:41 | INFO | MFG |   F1 score:  0.493
+2026-08-13 21:18:41 | INFO | MFG |   ROC-AUC:   0.721
+2026-08-13 21:18:41 | INFO | MFG | Comparison: RandomForestClassifier had the higher (better) ROC-AUC.
+2026-08-13 21:18:41 | INFO | MFG | Train regressor (part weight prediction)....
+2026-08-13 21:18:41 | INFO | MFG | Training RandomForestRegressor to predict: part_weight_g
+2026-08-13 21:18:44 | INFO | MFG | RandomForestRegressor Mean absolute error: 0.287 grams
+2026-08-13 21:18:44 | INFO | MFG | RandomForestRegressor R-squared: 0.669
+2026-08-13 21:18:44 | INFO | MFG | Predict two new example batches..........
+2026-08-13 21:18:44 | INFO | MFG | Predicting two new example batches
+2026-08-13 21:18:44 | INFO | MFG | Well-controlled batch:
+2026-08-13 21:18:44 | INFO | MFG |   Predicted defect: 0 (probability of defect: 0.15)
+2026-08-13 21:18:44 | INFO | MFG |   Predicted part weight: 50.02 g (nominal target: 50.0 g)
+2026-08-13 21:18:44 | INFO | MFG | Poorly-controlled batch:
+2026-08-13 21:18:44 | INFO | MFG |   Predicted defect: 1 (probability of defect: 0.79)
+2026-08-13 21:18:44 | INFO | MFG |   Predicted part weight: 50.75 g (nominal target: 50.0 g)
+2026-08-13 21:18:44 | INFO | MFG | Test edge cases against the trained classifier..........
+2026-08-13 21:18:44 | INFO | MFG | Edge case results (trained classifier, not an external API):
+2026-08-13 21:18:44 | INFO | MFG |   extremely hot melt               -> defect=1  probability=0.55
+2026-08-13 21:18:44 | INFO | MFG |   extremely cold melt              -> defect=1  probability=0.54
+2026-08-13 21:18:44 | INFO | MFG |   near-zero cooling time           -> defect=0  probability=0.36
+2026-08-13 21:18:44 | INFO | MFG |   very high material moisture      -> defect=1  probability=0.53
+2026-08-13 21:18:44 | INFO | MFG |   brand-new operator (0 years)     -> defect=0  probability=0.23
+2026-08-13 21:18:44 | INFO | MFG |   everything at worst case         -> defect=1  probability=0.71
+2026-08-13 21:18:44 | INFO | MFG | Create charts.............
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 1: correlation heatmap
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 2: classifier feature importance
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 3: confusion matrix
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 4: ROC curve comparison
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 5: defect rate by machine and shift
+2026-08-13 21:18:44 | INFO | MFG | Creating chart 6: melt temperature sweep vs defect probability
+2026-08-13 21:18:45 | INFO | MFG | melt_temperature_c sweep (defect probability):
+2026-08-13 21:18:45 | INFO | MFG |  melt_temperature_c  defect_probability
+              205.0            0.549263
+              207.5            0.552596
+              210.0            0.542775
+              212.5            0.484870
+              215.0            0.476099
+              217.5            0.373277
+              220.0            0.290773
+              222.5            0.286793
+              225.0            0.228528
+              227.5            0.174437
+              230.0            0.164575
+              232.5            0.157796
+              235.0            0.171728
+              237.5            0.157904
+              240.0            0.175951
+              242.5            0.183235
+              245.0            0.214916
+              247.5            0.244206
+              250.0            0.279530
+              252.5            0.278992
+              255.0            0.327257
+              257.5            0.409075
+              260.0            0.535656
+              262.5            0.550641
+              265.0            0.550641
+2026-08-13 21:18:45 | INFO | MFG | Summarize workflow........
+2026-08-13 21:18:45 | INFO | MFG | ========================
+2026-08-13 21:18:45 | INFO | MFG | SUMMARY
+2026-08-13 21:18:45 | INFO | MFG | ========================
+2026-08-13 21:18:45 | INFO | MFG | Dataset: manufacturing_quality_abdel
+2026-08-13 21:18:45 | INFO | MFG | Original rows: 3000
+2026-08-13 21:18:45 | INFO | MFG | Clean rows used for modeling: 3000
+2026-08-13 21:18:45 | INFO | MFG | Model features: ['operator_experience_years', 'melt_temperature_c', 'mold_temperature_c', 'injection_pressure_bar', 'injection_speed_mm_s', 'screw_speed_rpm', 'back_pressure_bar', 'hold_pressure_bar', 'hold_time_s', 'cooling_time_s', 'cycle_time_s', 'material_moisture_pct', 'ambient_humidity_pct', 'melt_temp_deviation', 'cooling_adequacy_ratio']
+2026-08-13 21:18:45 | INFO | MFG | Classification target: defect
+2026-08-13 21:18:45 | INFO | MFG | Regression target: part_weight_g
+2026-08-13 21:18:45 | INFO | MFG | Applied the Module 7 example's approach (train, evaluate, predict new
+2026-08-13 21:18:45 | INFO | MFG | cases, then probe the model with feature sweeps and edge cases) to a
+2026-08-13 21:18:45 | INFO | MFG | new manufacturing process engineering problem.
+2026-08-13 21:18:45 | INFO | MFG | ----- in a script, call plt.show() once at the end to display all charts -----
+2026-08-13 21:18:45 | INFO | MFG | ----- in a script, CLOSE the chart windows with the close button to CONTINUE -----
+2026-08-13 21:22:29 | INFO | MFG | Workflow complete
+2026-08-13 21:22:29 | INFO | MFG | IMPORTANT: This script creates chart windows.
+2026-08-13 21:22:29 | INFO | MFG | Close chart windows and terminate this process with CTRL+c as needed.
+2026-08-13 21:22:29 | INFO | MFG | ========================
+2026-08-13 21:22:29 | INFO | MFG | Executed successfully!
+2026-08-13 21:22:29 | INFO | MFG | ========================
+2026-08-13 21:23:40 | INFO | MFG | === RUN START ===
+2026-08-13 21:23:40 | INFO | MFG | project=MFG
+2026-08-13 21:23:40 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:23:40 | INFO | MFG | python=3.14.2
+2026-08-13 21:23:40 | INFO | MFG | os=Windows 11
+2026-08-13 21:23:40 | INFO | MFG | shell=powershell
+2026-08-13 21:23:40 | INFO | MFG | cwd=notebooks
+2026-08-13 21:23:40 | INFO | MFG | github_actions=False
+2026-08-13 21:23:40 | INFO | MFG | Confirming installation:
+2026-08-13 21:23:40 | INFO | MFG |   python:       3.14.2
+2026-08-13 21:23:40 | INFO | MFG |   pandas:       3.0.5
+2026-08-13 21:23:40 | INFO | MFG |   numpy:        2.5.2
+2026-08-13 21:23:40 | INFO | MFG |   scikit-learn: 1.9.0
+2026-08-13 21:23:40 | INFO | MFG |   seaborn:      0.13.2
+2026-08-13 21:23:40 | INFO | MFG |   matplotlib:   3.11.1
+2026-08-13 21:28:57 | INFO | MFG | === RUN START ===
+2026-08-13 21:28:57 | INFO | MFG | project=MFG
+2026-08-13 21:28:57 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:28:57 | INFO | MFG | python=3.14.2
+2026-08-13 21:28:57 | INFO | MFG | os=Windows 11
+2026-08-13 21:28:57 | INFO | MFG | shell=powershell
+2026-08-13 21:28:57 | INFO | MFG | cwd=notebooks
+2026-08-13 21:28:57 | INFO | MFG | github_actions=False
+2026-08-13 21:28:57 | INFO | MFG | Confirming installation:
+2026-08-13 21:28:57 | INFO | MFG |   python:       3.14.2
+2026-08-13 21:28:57 | INFO | MFG |   pandas:       3.0.5
+2026-08-13 21:28:57 | INFO | MFG |   numpy:        2.5.2
+2026-08-13 21:28:57 | INFO | MFG |   scikit-learn: 1.9.0
+2026-08-13 21:28:57 | INFO | MFG |   seaborn:      0.13.2
+2026-08-13 21:28:57 | INFO | MFG |   matplotlib:   3.11.1
+2026-08-13 21:30:19 | INFO | MFG | === RUN START ===
+2026-08-13 21:30:19 | INFO | MFG | project=MFG
+2026-08-13 21:30:19 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:30:19 | INFO | MFG | python=3.14.2
+2026-08-13 21:30:19 | INFO | MFG | os=Windows 11
+2026-08-13 21:30:19 | INFO | MFG | shell=powershell
+2026-08-13 21:30:19 | INFO | MFG | cwd=notebooks
+2026-08-13 21:30:19 | INFO | MFG | github_actions=False
+2026-08-13 21:30:19 | INFO | MFG | Confirming installation:
+2026-08-13 21:30:19 | INFO | MFG |   python:       3.14.2
+2026-08-13 21:30:19 | INFO | MFG |   pandas:       3.0.5
+2026-08-13 21:30:19 | INFO | MFG |   numpy:        2.5.2
+2026-08-13 21:30:19 | INFO | MFG |   scikit-learn: 1.9.0
+2026-08-13 21:30:19 | INFO | MFG |   seaborn:      0.13.2
+2026-08-13 21:30:19 | INFO | MFG |   matplotlib:   3.11.1
+2026-08-13 21:30:26 | INFO | MFG | === RUN START ===
+2026-08-13 21:30:26 | INFO | MFG | project=MFG
+2026-08-13 21:30:26 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:30:26 | INFO | MFG | python=3.14.2
+2026-08-13 21:30:26 | INFO | MFG | os=Windows 11
+2026-08-13 21:30:26 | INFO | MFG | shell=powershell
+2026-08-13 21:30:26 | INFO | MFG | cwd=notebooks
+2026-08-13 21:30:26 | INFO | MFG | github_actions=False
+2026-08-13 21:30:26 | INFO | MFG | Confirming installation:
+2026-08-13 21:30:26 | INFO | MFG |   python:       3.14.2
+2026-08-13 21:30:26 | INFO | MFG |   pandas:       3.0.5
+2026-08-13 21:30:26 | INFO | MFG |   numpy:        2.5.2
+2026-08-13 21:30:26 | INFO | MFG |   scikit-learn: 1.9.0
+2026-08-13 21:30:26 | INFO | MFG |   seaborn:      0.13.2
+2026-08-13 21:30:26 | INFO | MFG |   matplotlib:   3.11.1
+2026-08-13 21:32:00 | INFO | MFG | === RUN START ===
+2026-08-13 21:32:00 | INFO | MFG | project=MFG
+2026-08-13 21:32:00 | INFO | MFG | repo_dir=ml-07-applied
+2026-08-13 21:32:00 | INFO | MFG | python=3.14.2
+2026-08-13 21:32:00 | INFO | MFG | os=Windows 11
+2026-08-13 21:32:00 | INFO | MFG | shell=powershell
+2026-08-13 21:32:00 | INFO | MFG | cwd=notebooks
+2026-08-13 21:32:00 | INFO | MFG | github_actions=False
+2026-08-13 21:32:00 | INFO | MFG | Confirming installation:
+2026-08-13 21:32:00 | INFO | MFG |   python:       3.14.2
+2026-08-13 21:32:00 | INFO | MFG |   pandas:       3.0.5
+2026-08-13 21:32:00 | INFO | MFG |   numpy:        2.5.2
+2026-08-13 21:32:00 | INFO | MFG |   scikit-learn: 1.9.0
+2026-08-13 21:32:00 | INFO | MFG |   seaborn:      0.13.2
+2026-08-13 21:32:00 | INFO | MFG |   matplotlib:   3.11.1
+2026-08-13 21:32:00 | INFO | MFG | Loaded: 3000 rows, 19 columns
+2026-08-13 21:32:00 | INFO | MFG | Defect rate: 33.8%
+2026-08-13 21:32:00 | INFO | MFG | Missing values by column
+2026-08-13 21:32:00 | DEBUG | MFG | 
+batch_id                     0
+machine_id                   0
+shift                        0
+operator_experience_years    0
+melt_temperature_c           0
+mold_temperature_c           0
+injection_pressure_bar       0
+injection_speed_mm_s         0
+screw_speed_rpm              0
+back_pressure_bar            0
+hold_pressure_bar            0
+hold_time_s                  0
+cooling_time_s               0
+cycle_time_s                 0
+material_moisture_pct        0
+ambient_humidity_pct         0
+part_weight_g                0
+defect                       0
+defect_type                  0
+dtype: int64
+2026-08-13 21:32:00 | INFO | MFG | Duplicate rows: 0
+2026-08-13 21:32:00 | INFO | MFG | Engineered melt_temp_deviation and cooling_adequacy_ratio
+2026-08-13 21:32:00 | INFO | MFG | Clean modeling view: 3000 rows, 17 columns
+2026-08-13 21:32:00 | INFO | MFG | ANALYST CHOICE: Do any machines or shifts stand out with higher defect rates?
+2026-08-13 21:32:01 | INFO | MFG | RandomForestClassifier:
+2026-08-13 21:32:01 | INFO | MFG |   Accuracy:  0.712
+2026-08-13 21:32:01 | INFO | MFG |   Precision: 0.664
+2026-08-13 21:32:01 | INFO | MFG |   Recall:    0.303
+2026-08-13 21:32:01 | INFO | MFG |   F1 score:  0.416
+2026-08-13 21:32:01 | INFO | MFG |   ROC-AUC:   0.724
+2026-08-13 21:32:02 | INFO | MFG | GradientBoostingClassifier:
+2026-08-13 21:32:02 | INFO | MFG |   Accuracy:  0.712
+2026-08-13 21:32:02 | INFO | MFG |   Precision: 0.610
+2026-08-13 21:32:02 | INFO | MFG |   Recall:    0.413
+2026-08-13 21:32:02 | INFO | MFG |   F1 score:  0.493
+2026-08-13 21:32:02 | INFO | MFG |   ROC-AUC:   0.721
+2026-08-13 21:32:03 | INFO | MFG | ANALYST CHOICE: Which model has the better recall, and why might that matter more than accuracy here?
+2026-08-13 21:32:05 | INFO | MFG | RandomForestRegressor Mean absolute error: 0.287 grams
+2026-08-13 21:32:05 | INFO | MFG | RandomForestRegressor R-squared: 0.669
+2026-08-13 21:32:05 | INFO | MFG | Well-controlled batch: defect=0 (p=0.15), predicted weight=50.02g
+2026-08-13 21:32:05 | INFO | MFG | Poorly-controlled batch: defect=1 (p=0.79), predicted weight=50.75g
+2026-08-13 21:32:06 | INFO | MFG | melt_temperature_c sweep:
+2026-08-13 21:32:06 | INFO | MFG |  melt_temperature_c  defect_probability
+              205.0            0.549263
+              207.5            0.552596
+              210.0            0.542775
+              212.5            0.484870
+              215.0            0.476099
+              217.5            0.373277
+              220.0            0.290773
+              222.5            0.286793
+              225.0            0.228528
+              227.5            0.174437
+              230.0            0.164575
+              232.5            0.157796
+              235.0            0.171728
+              237.5            0.157904
+              240.0            0.175951
+              242.5            0.183235
+              245.0            0.214916
+              247.5            0.244206
+              250.0            0.279530
+              252.5            0.278992
+              255.0            0.327257
+              257.5            0.409075
+              260.0            0.535656
+              262.5            0.550641
+              265.0            0.550641
+2026-08-13 21:32:06 | INFO | MFG | ANALYST CHOICE: Where does defect probability rise fastest, and does that match physical intuition?
+2026-08-13 21:32:07 | INFO | MFG | ANALYST CHOICE: What does the shape of this decision surface tell you about which combinations of settings are riskiest?
+2026-08-13 21:32:07 | INFO | MFG | Edge case results:
+2026-08-13 21:32:07 | INFO | MFG |   extremely hot melt               -> defect_probability=0.55
+2026-08-13 21:32:07 | INFO | MFG |   extremely cold melt              -> defect_probability=0.54
+2026-08-13 21:32:07 | INFO | MFG |   near-zero cooling time           -> defect_probability=0.36
+2026-08-13 21:32:07 | INFO | MFG |   very high material moisture      -> defect_probability=0.53
+2026-08-13 21:32:07 | INFO | MFG |   brand-new operator (0 years)     -> defect_probability=0.23
+2026-08-13 21:32:07 | INFO | MFG |   everything at worst case         -> defect_probability=0.71
+2026-08-13 21:32:07 | INFO | MFG | ANALYST CHOICE: Which edge cases were handled with a clearly confident prediction, and which were more uncertain (near 0.5)?
+2026-08-13 21:32:07 | INFO | MFG | ========================
+2026-08-13 21:32:07 | INFO | MFG | SUMMARY
+2026-08-13 21:32:07 | INFO | MFG | ========================
+2026-08-13 21:32:07 | INFO | MFG | Dataset: manufacturing_quality_abdel, 3000 batches, 21 columns
+2026-08-13 21:32:07 | INFO | MFG | Classification target: defect
+2026-08-13 21:32:07 | INFO | MFG | Regression target: part_weight_g
+2026-08-13 21:32:07 | INFO | MFG | Applied the Module 7 investigation pattern (sweep, grid, edge cases)
+2026-08-13 21:32:07 | INFO | MFG | to a locally trained manufacturing defect classifier.
+2026-08-13 21:32:07 | INFO | MFG | ========================

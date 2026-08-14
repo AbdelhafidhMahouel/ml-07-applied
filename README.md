@@ -4,11 +4,11 @@
 [![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](./pyproject.toml)
 [![MIT](https://img.shields.io/badge/license-see%20LICENSE-yellow.svg)](./LICENSE)
 
-> Professional Python project: investigating a deployed machine learning model.
+> Professional Python project: investigating a deployed machine learning model, then applying the same skills to a custom manufacturing process engineering project.
 
 ## Project Description
 
-This project focuses on learning to interrogate a deployed ML model
+This project focuses on learning to interrogate a machine learning model
 by probing it systematically with different inputs.
 
 We learn to:
@@ -18,31 +18,40 @@ We learn to:
 - identify decision boundaries and edge cases
 - interpret model behavior from the outside
 
-## Example Notebook + Your Notebook
+Author: Abdelhafidh Mahouel
 
-Keep the example notebook as it is.
-Either copy it or use it to build a new notebook that ends in _yourname.
-See [docs/your-files.md] for more.
+## Example Notebook + My Notebooks
 
-Links:
+The original working examples are kept as-is for reference:
 
-- [ml_07_case.ipynb](notebooks/ml_07_case.ipynb)
+- [ml_07_case.ipynb](notebooks/ml_07_case.ipynb) - example: investigating a deployed penguin species API
+- [ml_07_text_and_image_case.ipynb](notebooks/ml_07_text_and_image_case.ipynb) - optional example: text and image classification
+
+My Phase 4 (technical modification) and Phase 5 (custom project) work:
+
+- [ml_07_abdel.ipynb](notebooks/ml_07_abdel.ipynb) - Phase 4: modified version of the deployed model investigation
+- [ml_07_text_and_image_abdel.ipynb](notebooks/ml_07_text_and_image_abdel.ipynb) - Phase 4 (optional): modified text/image notebook
+- [ml_07_manufacturing_abdel.ipynb](notebooks/ml_07_manufacturing_abdel.ipynb) - Phase 5: custom manufacturing process engineering project
+
+See [docs/your-files.md] for more on the naming convention.
 
 ## Working Files
 
-You'll work with these areas:
-
-- **data/raw** - raw data for exploration (only if you add a dataset)
-- **docs/** - project narrative and documentation
-- **src/mlstudio/** - the app is an example; run only (no need to modify)
-- **notebooks/** - interactive analysis
-- **pyproject.toml** - update authorship & links
-- **zensical.toml** - update authorship & links
+- **data/raw** - raw data for exploration, including my custom `manufacturing_quality_abdel.csv` dataset
+- **docs/** - project narrative and documentation, see [docs/index.md](docs/index.md) for my full Phase 4 and Phase 5 write-up
+- **src/mlstudio/** - application code
+  - `app_case.py` - original working example (unmodified, kept as reference)
+  - `app_abdel.py` - Phase 4: my modified version of the example
+  - `app_manufacturing_abdel.py` - Phase 5: my custom manufacturing project
+- **notebooks/** - interactive analysis (see above)
+- **pyproject.toml** - updated authorship & links
+- **zensical.toml** - updated authorship & links
 
 ## Additional Packages
 
-This project uses `requests` to make the calls.
-Be sure the requests package is listed in `pyproject.toml`.
+This project uses `requests` to make live API calls, and `scikit-learn`,
+`seaborn`, and `numpy` for model training and visualization. All are listed
+in `pyproject.toml`.
 
 ## Instructions (pro-analytics-02)
 
@@ -53,8 +62,8 @@ to complete:
 1. Phase 1. **Start & Run**
 2. Phase 2. **Change Authorship**
 3. Phase 3. **Read & Understand**
-4. Phase 4. **Modify**
-5. Phase 5. **Apply**
+4. Phase 4. **Make a Technical Modification**
+5. Phase 5. **Apply the Skills to a New Problem**
 
 ## Challenges
 
@@ -77,6 +86,80 @@ Executed successfully!
 
 A new file `project.log` will appear in the root project folder.
 
+## Phase 4: Technical Modification
+
+I copied the working examples and created modified versions with several
+real, coordinated changes rather than a single small edit. See
+[docs/index.md](docs/index.md#phase-4-technical-modification) for the full
+write-up, including what I observed and why it mattered.
+
+### app_abdel.py (modified from app_case.py)
+
+- Added a new engineered feature, `study_efficiency` (hours_studied / sleep_hours)
+- Trained and compared **two** models instead of one: `LinearRegression` vs `Ridge`
+- Predicted a new custom case with different input values
+- Replaced the scatter plot with a `regplot` that includes a trend line
+- Updated the coefficient bar chart to show both models side by side
+- Added a brand-new chart: a correlation heatmap (not in the original example)
+
+Run with:
+
+```shell
+uv run python -m mlstudio.app_abdel
+```
+
+### ml_07_abdel.ipynb (modified from ml_07_case.ipynb)
+
+- Added a 4th baseline case
+- Swept a different feature, `body_mass_g`, instead of `bill_length_mm`, with a new line-and-marker chart style
+- Used a different feature pair, `bill_depth_mm` vs `body_mass_g`, for the prediction grid, with a new colormap
+- Added two new edge cases
+
+### ml_07_text_and_image_abdel.ipynb (optional, modified from ml_07_text_and_image_case.ipynb)
+
+- Replaced the original text corpus with a new technology/music/travel corpus
+- Compared **two** text models: `MultinomialNB` vs `LogisticRegression`
+- Compared **two** image models: `LogisticRegression` vs `RandomForestClassifier`, and changed the train/test split from 80/20 to 70/30
+- Added the missing function calls at the end of the notebook so it actually produces output (the original example only defined the functions without calling them)
+
+## Phase 5: Custom Project - Manufacturing Process Engineering
+
+For my custom project, I applied the Module 7 skills (train and evaluate
+supervised models, predict new cases, and systematically probe a model's
+behavior with feature sweeps, decision grids, and edge cases) to a new
+domain: **injection molding process engineering in manufacturing**.
+
+Full write-up, findings, and charts: [docs/index.md](docs/index.md#phase-5-custom-project)
+
+### The problem
+
+A plastics manufacturer records process settings for every production
+batch on an injection molding line. I built a system that:
+
+1. **Classifies** whether a batch is likely defective (`defect`), based on
+   13 process parameters plus 2 engineered features, using and comparing
+   `RandomForestClassifier` and `GradientBoostingClassifier`.
+2. **Predicts** the continuous part weight in grams (`part_weight_g`) using
+   `RandomForestRegressor`.
+3. **Investigates** the trained classifier the same way the Module 7
+   example investigated the deployed penguin API: sweeping one feature at
+   a time, building a two-feature decision grid, and testing edge cases,
+   but applied to a model I trained myself instead of an external API.
+
+### Data
+
+`data/raw/manufacturing_quality_abdel.csv` - a synthetic but realistically
+engineered dataset of 3,000 injection-molding production batches across 19
+columns (process parameters, part weight, defect flag, and defect type).
+See `data/raw/README.md` for full column documentation and how the data
+was generated.
+
+Run with:
+
+```shell
+uv run python -m mlstudio.app_manufacturing_abdel
+```
+
 ## Command Reference
 
 <details>
@@ -88,7 +171,6 @@ After you get a copy of this repo in your own GitHub account,
 open a machine terminal in your `Repos` folder:
 
 ```shell
-# Replace username with YOUR GitHub username.
 git clone https://github.com/AbdelhafidhMahouel/ml-07-applied
 
 cd ml-07-applied
@@ -96,10 +178,6 @@ code .
 ```
 
 ### In a VS Code terminal
-
-These are listed for convenience.
-For best results, follow the detailed instructions in
-[pro-analytics-02 guide](https://denisecase.github.io/pro-analytics-02/).
 
 ```shell
 uv self update
@@ -115,8 +193,14 @@ uvx pre-commit run --all-files
 # repeat if changes were made
 uvx pre-commit run --all-files
 
-# run the example module to verify the environment (.venv/)
+# run the original example module to verify the environment (.venv/)
 uv run python -m mlstudio.app_case
+
+# run my Phase 4 modified example
+uv run python -m mlstudio.app_abdel
+
+# run my Phase 5 custom manufacturing project
+uv run python -m mlstudio.app_manufacturing_abdel
 
 # run common chores
 uv run ruff format .
@@ -148,54 +232,33 @@ You accidentally started Python interactive mode.
 It happens.
 Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
-## Example Output (Can Remove this Section after You Verify)
-
-```shell
-| INFO | ML | Summarize workflow........
-| INFO | ML | ========================
-| INFO | ML | SUMMARY
-| INFO | ML | ========================
-| INFO | ML | Dataset: hours_scores_case
-| INFO | ML | Original rows: 10
-| INFO | ML | Clean rows: 10
-| INFO | ML | Features: ['hours_studied', 'practice_quizzes', 'attendance_pct', 'sleep_hours', 'prior_score']
-| INFO | ML | Target: score
-| INFO | ML | ----- in a script, call plt.show() once at the end to display all charts -----
-| INFO | ML | ----- in a script, CLOSE the chart windows with the close button to CONTINUE -----
-| INFO | ML | Workflow complete
-| INFO | ML | IMPORTANT: This script creates chart windows.
-| INFO | ML | Close chart windows and terminate this process with CTRL+c as needed.
-| INFO | ML | ========================
-| INFO | ML | Executed successfully!
-| INFO | ML | ========================
-```
-
 ## Findings and Visuals
 
-Take screenshots of your charts and provide them here with a discussion.
-In Markdown, display a figure by using:
-an exclamation mark immediately followed by square brackets containing a useful caption
-immediately followed by parentheses containing the relative path to your figure.
-Note: When you start typing the path with a dot (.) for "here, in this directory",
-the IDE may help complete the path.
+### Phase 4 charts (app_abdel.py)
 
-In your custom project, follow this example, but
+![Hours studied vs score with trend line](./docs/images/abdel_chart_1.png)
 
-- your figures and narrative should reflect your work,
-- this `README.md` should include your commands, process, and visuals, and
-- `docs/index.md` should include your narrative.
+![Model coefficients: LinearRegression vs Ridge](./docs/images/abdel_chart_2.png)
 
-Remove unnecessary instructional comments in your custom files.
+![Correlation heatmap of features and score](./docs/images/abdel_chart_3.png)
 
-Update figures to present interesting results from your custom project:
+### Phase 5 charts (app_manufacturing_abdel.py)
 
-![Provide a Useful Caption](./docs/images/Figure_1.png)
+![Correlation heatmap of manufacturing process parameters](./docs/images/mfg_chart_1.png)
 
-![Provide a Useful Caption](./docs/images/Figure_2.png)
+![RandomForestClassifier feature importance](./docs/images/mfg_chart_2.png)
+
+![Confusion matrix: RandomForestClassifier](./docs/images/mfg_chart_3.png)
+
+![ROC curve comparison: RandomForest vs GradientBoosting](./docs/images/mfg_chart_4.png)
+
+![Defect rate by machine and shift](./docs/images/mfg_chart_5.png)
+
+![Feature sensitivity: defect probability vs melt temperature](./docs/images/mfg_chart_6.png)
 
 ## Project Documentation
 
-Additional project instructions, terms, and notes:
+Additional project instructions, terms, and my full Phase 4 / Phase 5 narrative:
 
 [docs/index.md](docs/index.md)
 
