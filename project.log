@@ -770,3 +770,197 @@ dtype: int64
 2026-08-11 05:43:47 | INFO | M07 |   scikit-learn: 1.9.0
 2026-08-11 05:43:47 | INFO | M07 |   seaborn:      0.13.2
 2026-08-11 05:43:47 | INFO | M07 |   matplotlib:   3.11.1
+2026-08-13 20:52:22 | INFO | ML | === RUN START ===
+2026-08-13 20:52:22 | INFO | ML | project=ML
+2026-08-13 20:52:22 | INFO | ML | repo_dir=ml-07-applied
+2026-08-13 20:52:22 | INFO | ML | python=3.14.2
+2026-08-13 20:52:22 | INFO | ML | os=Windows 11
+2026-08-13 20:52:22 | INFO | ML | shell=powershell
+2026-08-13 20:52:22 | INFO | ML | cwd=.
+2026-08-13 20:52:22 | INFO | ML | github_actions=False
+2026-08-13 20:52:22 | INFO | ML | === RUN START ===
+2026-08-13 20:52:22 | INFO | ML | project=ML
+2026-08-13 20:52:22 | INFO | ML | repo_dir=ml-07-applied
+2026-08-13 20:52:22 | INFO | ML | python=3.14.2
+2026-08-13 20:52:22 | INFO | ML | os=Windows 11
+2026-08-13 20:52:22 | INFO | ML | shell=powershell
+2026-08-13 20:52:22 | INFO | ML | cwd=.
+2026-08-13 20:52:22 | INFO | ML | github_actions=False
+2026-08-13 20:52:22 | INFO | ML | ========================
+2026-08-13 20:52:22 | INFO | ML | START main() - abdel custom version
+2026-08-13 20:52:22 | INFO | ML | ========================
+2026-08-13 20:52:22 | INFO | ML | Load dataset..............
+2026-08-13 20:52:22 | INFO | ML | Loading dataset: hours_scores_case
+2026-08-13 20:52:22 | INFO | ML | Loaded: 10 rows, 6 columns
+2026-08-13 20:52:22 | DEBUG | ML | 
+   hours_studied  practice_quizzes  attendance_pct  sleep_hours  prior_score  score
+0            2.0                 1              72          6.0           58     62
+1            3.5                 2              80          6.5           61     68
+2            4.0                 3              85          7.0           64     72
+3            5.0                 3              88          7.5           66     76
+4            6.0                 4              90          7.0           70     81
+2026-08-13 20:52:22 | INFO | ML | Inspect dataset...........
+2026-08-13 20:52:22 | INFO | ML | Column names
+2026-08-13 20:52:22 | DEBUG | ML | ['hours_studied', 'practice_quizzes', 'attendance_pct', 'sleep_hours', 'prior_score', 'score']
+2026-08-13 20:52:22 | INFO | ML | DataFrame info
+2026-08-13 20:52:22 | INFO | ML | Dataset shape: 10 rows, 6 columns
+2026-08-13 20:52:22 | INFO | ML | Check data quality........
+2026-08-13 20:52:22 | INFO | ML | Missing values by column
+2026-08-13 20:52:22 | DEBUG | ML | 
+hours_studied       0
+practice_quizzes    0
+attendance_pct      0
+sleep_hours         0
+prior_score         0
+score               0
+dtype: int64
+2026-08-13 20:52:22 | INFO | ML | Duplicate row count: 0
+2026-08-13 20:52:22 | INFO | ML | Create clean view (with new feature)..........
+2026-08-13 20:52:22 | INFO | ML | Creating clean modeling view
+2026-08-13 20:52:22 | INFO | ML | Engineered new feature: study_efficiency = hours_studied / sleep_hours
+2026-08-13 20:52:22 | INFO | ML | Clean view: 10 rows, 7 columns
+2026-08-13 20:52:22 | INFO | ML | Correlation of study_efficiency with score: 0.985
+2026-08-13 20:52:22 | INFO | ML | Train and compare two supervised models....
+2026-08-13 20:52:22 | INFO | ML | Training LinearRegression model
+2026-08-13 20:52:22 | INFO | ML | LinearRegression Mean absolute error: 0.71
+2026-08-13 20:52:22 | INFO | ML | LinearRegression R-squared: 0.99
+2026-08-13 20:52:22 | INFO | ML | Training Ridge model (alpha=1.0)
+2026-08-13 20:52:22 | INFO | ML | Ridge Mean absolute error: 0.85
+2026-08-13 20:52:22 | INFO | ML | Ridge R-squared: 0.99
+2026-08-13 20:52:22 | INFO | ML | Comparison: LinearRegression had the lower (better) MAE.
+2026-08-13 20:52:22 | INFO | ML | Predict one new custom case..........
+2026-08-13 20:52:22 | INFO | ML | Predicting one new custom case
+2026-08-13 20:52:22 | INFO | ML | New case:
+   hours_studied  practice_quizzes  attendance_pct  sleep_hours  prior_score  study_efficiency
+0            2.5                 1              70          5.5           60          0.454545
+2026-08-13 20:52:22 | INFO | ML | Predicted score: 63.5
+2026-08-13 20:52:22 | INFO | ML | Create charts (regplot, grouped bar, new heatmap)...
+2026-08-13 20:52:22 | INFO | ML | Creating chart: hours studied vs score (with trend line)
+2026-08-13 20:52:23 | INFO | ML | Creating chart: model coefficients (LinearRegression vs Ridge)
+2026-08-13 20:52:23 | INFO | ML | Got a figure Figure(900x500) and axes Axes(0.125,0.11;0.775x0.77) from plt.subplots().
+2026-08-13 20:52:23 | INFO | ML | Creating chart: correlation heatmap (NEW chart, not in original example)
+2026-08-13 20:52:23 | INFO | ML | Summarize workflow........
+2026-08-13 20:52:23 | INFO | ML | ========================
+2026-08-13 20:52:23 | INFO | ML | SUMMARY
+2026-08-13 20:52:23 | INFO | ML | ========================
+2026-08-13 20:52:23 | INFO | ML | Dataset: hours_scores_case
+2026-08-13 20:52:23 | INFO | ML | Original rows: 10
+2026-08-13 20:52:23 | INFO | ML | Clean rows: 10
+2026-08-13 20:52:23 | INFO | ML | Features: ['hours_studied', 'practice_quizzes', 'attendance_pct', 'sleep_hours', 'prior_score', 'study_efficiency']
+2026-08-13 20:52:23 | INFO | ML | Target: score
+2026-08-13 20:52:23 | INFO | ML | Modifications: added study_efficiency feature, compared
+2026-08-13 20:52:23 | INFO | ML | LinearRegression vs Ridge, new custom prediction case,
+2026-08-13 20:52:23 | INFO | ML | regplot with trend line, and a new correlation heatmap chart.
+2026-08-13 20:52:23 | INFO | ML | ----- in a script, call plt.show() once at the end to display all charts -----
+2026-08-13 20:52:23 | INFO | ML | ----- in a script, CLOSE the chart windows with the close button to CONTINUE -----
+2026-08-13 20:52:39 | INFO | ML | Workflow complete
+2026-08-13 20:52:39 | INFO | ML | IMPORTANT: This script creates chart windows.
+2026-08-13 20:52:39 | INFO | ML | Close chart windows and terminate this process with CTRL+c as needed.
+2026-08-13 20:52:39 | INFO | ML | ========================
+2026-08-13 20:52:39 | INFO | ML | Executed successfully!
+2026-08-13 20:52:39 | INFO | ML | ========================
+2026-08-13 20:53:18 | INFO | M07 | === RUN START ===
+2026-08-13 20:53:18 | INFO | M07 | project=M07
+2026-08-13 20:53:18 | INFO | M07 | repo_dir=ml-07-applied
+2026-08-13 20:53:18 | INFO | M07 | python=3.14.2
+2026-08-13 20:53:18 | INFO | M07 | os=Windows 11
+2026-08-13 20:53:18 | INFO | M07 | shell=powershell
+2026-08-13 20:53:18 | INFO | M07 | cwd=notebooks
+2026-08-13 20:53:18 | INFO | M07 | github_actions=False
+2026-08-13 20:53:18 | INFO | M07 | Confirming installation:
+2026-08-13 20:53:18 | INFO | M07 |   python:       3.14.2
+2026-08-13 20:53:18 | INFO | M07 |   pandas:       3.0.5
+2026-08-13 20:53:18 | INFO | M07 |   numpy:        2.5.2
+2026-08-13 20:53:18 | INFO | M07 |   matplotlib:   3.11.1
+2026-08-13 20:53:18 | INFO | M07 |   seaborn:      0.13.2
+2026-08-13 20:53:18 | INFO | M07 |   requests:     2.34.2
+2026-08-13 20:53:18 | INFO | M07 | API endpoint: https://ml-penguin-predictor.onrender.com/predict
+2026-08-13 20:53:18 | INFO | M07 | Baseline predictions:
+2026-08-13 20:53:19 | INFO | M07 |   expected=Adelie     got=Adelie     [OK]
+2026-08-13 20:53:19 | INFO | M07 |   expected=Chinstrap  got=Chinstrap  [OK]
+2026-08-13 20:53:19 | INFO | M07 |   expected=Gentoo     got=Gentoo     [OK]
+2026-08-13 20:53:19 | INFO | M07 |   expected=Gentoo     got=Gentoo     [OK]
+2026-08-13 20:53:23 | INFO | M07 | body_mass_g sweep:
+2026-08-13 20:53:23 | INFO | M07 |  body_mass_g prediction
+ 2500.000000     Adelie
+ 2710.526316     Adelie
+ 2921.052632     Adelie
+ 3131.578947     Adelie
+ 3342.105263     Adelie
+ 3552.631579     Adelie
+ 3763.157895     Adelie
+ 3973.684211     Adelie
+ 4184.210526     Adelie
+ 4394.736842     Adelie
+ 4605.263158     Adelie
+ 4815.789474     Adelie
+ 5026.315789     Adelie
+ 5236.842105     Adelie
+ 5447.368421     Adelie
+ 5657.894737     Adelie
+ 5868.421053     Adelie
+ 6078.947368     Adelie
+ 6289.473684     Adelie
+ 6500.000000     Adelie
+2026-08-13 20:53:23 | INFO | M07 | ANALYST CHOICE: Where does the prediction shift and does that match your expectation?
+2026-08-13 20:53:44 | INFO | M07 | ANALYST CHOICE: What does the boundary shape tell you about the model?
+2026-08-13 20:53:44 | INFO | M07 | Edge case results:
+2026-08-13 20:53:44 | INFO | M07 |   missing feature                  -> ERROR: 400 Client Error: Bad Request for url: https://ml-penguin-predictor.onrender.com/predict
+2026-08-13 20:53:44 | INFO | M07 |   extreme bill length              -> Adelie
+2026-08-13 20:53:45 | INFO | M07 |   very large bill                  -> Chinstrap
+2026-08-13 20:53:45 | INFO | M07 |   negative value                   -> Adelie
+2026-08-13 20:53:45 | INFO | M07 |   zero body mass                   -> Adelie
+2026-08-13 20:53:45 | INFO | M07 |   unrealistically large body mass  -> Adelie
+2026-08-13 20:53:45 | INFO | M07 |   zero bill depth                  -> Adelie
+2026-08-13 20:53:45 | INFO | M07 | ANALYST CHOICE: Which edge cases were handled cleanly and which were not?
+2026-08-13 20:53:45 | INFO | M07 | ========================
+2026-08-13 20:53:45 | INFO | M07 | SUMMARY
+2026-08-13 20:53:45 | INFO | M07 | ========================
+2026-08-13 20:53:45 | INFO | M07 | API endpoint: https://ml-penguin-predictor.onrender.com/predict
+2026-08-13 20:53:45 | INFO | M07 | Modifications from the original example:
+2026-08-13 20:53:45 | INFO | M07 |   - added a 4th baseline case
+2026-08-13 20:53:45 | INFO | M07 |   - swept body_mass_g instead of bill_length_mm
+2026-08-13 20:53:45 | INFO | M07 |   - new line+marker chart style for the sweep
+2026-08-13 20:53:45 | INFO | M07 |   - grid used bill_depth_mm vs body_mass_g with a new colormap
+2026-08-13 20:53:45 | INFO | M07 |   - added 2 new edge cases
+2026-08-13 20:53:45 | INFO | M07 | ========================
+2026-08-13 20:56:10 | INFO | M07 | === RUN START ===
+2026-08-13 20:56:10 | INFO | M07 | project=M07
+2026-08-13 20:56:10 | INFO | M07 | repo_dir=ml-07-applied
+2026-08-13 20:56:10 | INFO | M07 | python=3.14.2
+2026-08-13 20:56:10 | INFO | M07 | os=Windows 11
+2026-08-13 20:56:10 | INFO | M07 | shell=powershell
+2026-08-13 20:56:10 | INFO | M07 | cwd=notebooks
+2026-08-13 20:56:10 | INFO | M07 | github_actions=False
+2026-08-13 20:56:10 | INFO | M07 | Confirming installation:
+2026-08-13 20:56:10 | INFO | M07 |   python:       3.14.2
+2026-08-13 20:56:10 | INFO | M07 |   pandas:       3.0.5
+2026-08-13 20:56:10 | INFO | M07 |   numpy:        2.5.2
+2026-08-13 20:56:10 | INFO | M07 |   scikit-learn: 1.9.0
+2026-08-13 20:56:10 | INFO | M07 |   seaborn:      0.13.2
+2026-08-13 20:56:10 | INFO | M07 |   matplotlib:   3.11.1
+2026-08-13 20:56:10 | INFO | M07 | Text corpus: 24 documents, classes=['music', 'technology', 'travel']
+2026-08-13 20:56:10 | INFO | M07 | Vocabulary size (features): 115
+2026-08-13 20:56:10 | INFO | M07 | MultinomialNB text test accuracy: 0.167
+2026-08-13 20:56:10 | INFO | M07 | LogisticRegression text test accuracy: 0.167
+2026-08-13 20:56:10 | INFO | M07 |   NB predicted 'technology', LR predicted 'technology'  <-  'the phone maker announced a new tablet with a bigger screen'
+2026-08-13 20:56:10 | INFO | M07 |   NB predicted 'travel', LR predicted 'travel'  <-  'the drummer joined the band for their reunion tour'
+2026-08-13 20:56:10 | INFO | M07 | TF-IDF ignored word order. Did any misread sentence reveal that limit?
+2026-08-13 20:56:10 | INFO | M07 | Image data: 1797 images, 64 pixel features each
+2026-08-13 20:56:10 | INFO | M07 | Classes (digits): [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+2026-08-13 20:56:10 | INFO | M07 | LogisticRegression image test accuracy: 0.957
+2026-08-13 20:56:10 | INFO | M07 | RandomForest image test accuracy: 0.981
+2026-08-13 20:56:10 | INFO | M07 | Showing confusion matrix for the stronger model: RandomForest
+2026-08-13 20:56:10 | INFO | M07 | Which digits confuse each other, and does the pixel view explain why?
+2026-08-13 20:56:10 | INFO | M07 | ========================
+2026-08-13 20:56:10 | INFO | M07 | SUMMARY
+2026-08-13 20:56:10 | INFO | M07 | ========================
+2026-08-13 20:56:10 | INFO | M07 | Text:   TF-IDF + MultinomialNB vs LogisticRegression on a custom corpus
+2026-08-13 20:56:10 | INFO | M07 | Image:  pixel features + LogisticRegression vs RandomForest on digit images
+2026-08-13 20:56:10 | INFO | M07 | Same skeleton both times; only the representation and models changed.
+2026-08-13 20:56:10 | INFO | M07 | ========================
+2026-08-13 20:56:10 | INFO | M07 | YOUR JUDGMENT (write up in README.md and docs/index.md):
+2026-08-13 20:56:10 | INFO | M07 |   - What did TF-IDF throw away, and where would that bite you?
+2026-08-13 20:56:10 | INFO | M07 |   - What did flattening images throw away, and where would that bite you?
+2026-08-13 20:56:10 | INFO | M07 |   - For each, what representation would you reach for next, and why?
+2026-08-13 20:56:10 | INFO | M07 | ========================
